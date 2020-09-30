@@ -76,12 +76,12 @@
         });
         // console.log(total);
 
-        const totalMoney = total.reduce(function (total, item) { 
+        const totalMoney = total.reduce(function (total, item) {
             total += item;
             return total;
         }, 0)
         const finalMoney = totalMoney.toFixed(2);
-        
+
         document.getElementById('cart-total').textContent = finalMoney;
         document.querySelector('.item-total').textContent = finalMoney;
         document.getElementById('item-count').textContent = total.length;
