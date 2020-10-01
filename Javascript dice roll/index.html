@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style type="text/css">
+            * {
+                outline: none;
+            }
+            body {
+                background-color: rgb(250, 246, 246);
+            }
+            .dice-container {
+                display: flex;
+            }
+            .dice {
+                padding: 30px;
+                margin: 10px;
+                border-radius: 10px;
+                color: white;
+            }
+            #die1 {
+                background-color: blue;
+                color: white;
+            }
+            #die2 {
+                background-color: red;
+                color: white;
+            }
+            .btn {
+                padding: 16px;
+                background-color: purple;
+                border: 2px solid white;
+                color: white;
+                border-radius: 10px;
+                transition: all 0.4s linear;
+            }
+            .btn:hover {
+                color: purple;
+                background-color: white;
+                border: 2px solid purple;
+            }
+            #status {
+                font-size: 40px;
+                font-weight: 100;
+            }
+        </style>
+        <script>
+            function rollDice() {
+                var die1 = document.getElementById('die1');
+                var die2 = document.getElementById('die2');
+                var status = document.getElementById('status');
+                var d1 = Math.floor(Math.random() * 6) + 1;
+                var d2 = Math.floor(Math.random() * 6) + 1;
+                var diceTotal = d1 + d2;
+                die1.innerHTML = d1;
+                die2.innerHTML = d2;
+                status.innerHTML = "You rolled" + " " + d1 + " " + "and" + " " + d2 + " " + "Which is equal to" + " " + diceTotal + ".";
+                if (d1 == d2) {
+                    status.innerHTML += " DOUBLES! You get a free turn!!"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="dice-container">
+            <div id="die1" class="dice">0</div>
+            <div id="die2" class="dice">0</div>
+        </div>
+
+        <button onclick="rollDice()" class="btn">Roll Dice</button>
+        <h2 id="status"></h2>
+     
+    </body>
+</html>
