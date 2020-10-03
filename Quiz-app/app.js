@@ -36,9 +36,16 @@ function showProgress() {
 
 function showScores() {
     var gameOverHtml = "<h1>Result</h1>";
-    gameOverHtml += "<h2 id='score'> Your scores: " + quiz.score + " out of " + quiz.questions.length + "</h2>";
+    gameOverHtml += "<h2 id='score'> Your score: " + quiz.score + " out of " + quiz.questions.length + "</h2>";
     var element = document.getElementById("quiz");
     element.innerHTML = gameOverHtml;
+    if (quiz.score === quiz.questions.length) {
+        element.innerHTML = gameOverHtml += "<h2 id='score'>Wow you got every thing right!!! :)</h2>"
+    } else if (quiz.score === 0) {
+        element.innerHTML = gameOverHtml += "<h2 id='score'>Sorry you got none correct :(</h2>"
+    } else {
+        element.innerHTML = gameOverHtml += "<h2 id='score'> You will do even better next time.</h2>"
+    }
 };
 
 var questions = [
