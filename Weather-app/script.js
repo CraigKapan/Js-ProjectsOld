@@ -21,10 +21,10 @@ const weather = {
 };
 
 function displayWeather() {
-    iconElement.innerHTML = `<img src="icons/${weather.iconId}.png">`
-    tempElement.innerHTML = `${weather.temperature.value} ° <span>C<span>`;
+    iconElement.innerHTML = `<img src="icons/${weather.iconId}.png"/>`
+    tempElement.innerHTML = `${weather.temperature.value}°<span>C<span>`;
     descElement.innerHTML = weather.description;
-    locationElement.innerHTML = `${weather.city}, ${weather.contry}`;
+    locationElement.innerHTML = `${weather.city}, ${weather.country}`;
 }
 
 weather.temperature.value = 300 - 273
@@ -35,7 +35,7 @@ function celsiusToFahrenheit(temperature) {
 
 tempElement.addEventListener('click', function() {
     if(weather.temperature.value === undefined) return;
-    if(weather.temperature.unit === 'celsius') {
+    if(weather.temperature.unit == 'celsius') {
         let fahrenheit = celsiusToFahrenheit(weather.temperature.value);
         fahrenheit = Math.floor(fahrenheit);
         tempElement.innerHTML = `${fahrenheit}° <span>F<span>`
@@ -73,16 +73,17 @@ const key = '82005d27a116c2880c8f0fcb86699a0';
 
 function getWeather(latitude, longitude) {
     let api = `http://api.openweathermap.org/data/2.5/weather?lat=${latitude}&lon=${longitude}&appid=${key}`;
-    fetch(api).then(function(response) {
+    fetch(api)
+    .then(function(response) {
         let data = response.json();
         return data;
-    }).then(function(data) {
+    })
+    .then(function(data) {
         weather.temperature.value = Math.floor(data.min.temp - KELVIN);
         weather.description = data.weather[0].description;
         weather.iconId = data.weather[0].icon;
         weather.city = data.name;
         weather.country = data.sys.country;
-    }).then(function() {
-        displayWeather();
-    });
+    })
+    displayWeather()
 }
